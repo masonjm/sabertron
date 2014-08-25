@@ -5,7 +5,7 @@ Player
   last_name
 
 Team
-  name
+  code
   league
 
 HittingStat
