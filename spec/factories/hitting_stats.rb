@@ -2,9 +2,9 @@
 
 FactoryGirl.define do
   factory :hitting_stat do
-    player nil
-    team nil
-    year "2014"
+    association :player
+    association :team
+    year 2014
     games 1
     at_bats 1
     runs 1

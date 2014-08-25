@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :team do
-    code "MyString"
-    league "MyString"
+    sequence :code
+    league "AL"
   end
 end

@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20140825144551) do
   create_table "hitting_stats", force: true do |t|
     t.integer  "player_id",                   null: false
     t.integer  "team_id",                     null: false
-    t.string   "year",                        null: false
+    t.integer  "year",                        null: false
     t.integer  "games",                       null: false
     t.integer  "at_bats",         default: 0
     t.integer  "runs",            default: 0
