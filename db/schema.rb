@@ -11,7 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140825144202) do
+ActiveRecord::Schema.define(version: 20140825144551) do
+
+  create_table "hitting_stats", force: true do |t|
+    t.integer  "player_id",                   null: false
+    t.integer  "team_id",                     null: false
+    t.string   "year",                        null: false
+    t.integer  "games",                       null: false
+    t.integer  "at_bats",         default: 0
+    t.integer  "runs",            default: 0
+    t.integer  "singles",         default: 0
+    t.integer  "doubles",         default: 0
+    t.integer  "triples",         default: 0
+    t.integer  "home_runs",       default: 0
+    t.integer  "rbi",             default: 0
+    t.integer  "stolen_bases",    default: 0
+    t.integer  "caught_stealing", default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "hitting_stats", ["player_id"], name: "index_hitting_stats_on_player_id"
+  add_index "hitting_stats", ["team_id"], name: "index_hitting_stats_on_team_id"
 
   create_table "players", force: true do |t|
     t.string   "code"
