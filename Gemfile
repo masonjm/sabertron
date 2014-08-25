@@ -29,6 +29,7 @@ gem 'spring',        group: :development
 group :development, :test do
   gem 'database_cleaner'
   gem 'rspec-rails'
+  gem 'shoulda-matchers', require: false
   gem 'factory_girl_rails'
 end
 
