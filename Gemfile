@@ -27,6 +27,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 group :development, :test do
+  gem 'activerecord-import'
   gem 'database_cleaner'
   gem 'rspec-rails'
   gem 'shoulda-matchers', require: false

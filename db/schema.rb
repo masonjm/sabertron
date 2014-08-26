@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20140825144551) do
 
   create_table "players", force: true do |t|
     t.string   "code"
-    t.date     "born_on"
+    t.string   "birth_year"
     t.string   "first_name"
     t.string   "last_name"
     t.datetime "created_at"
