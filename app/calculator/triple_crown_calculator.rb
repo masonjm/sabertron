@@ -33,7 +33,7 @@ class TripleCrownCalculator
   
   attr_reader :year, :minimum_at_bats
   
-  def initialize(year, minimum_at_bats: 200)
+  def initialize(year, minimum_at_bats: 400)
     @year = year
     @minimum_at_bats = minimum_at_bats
   end
