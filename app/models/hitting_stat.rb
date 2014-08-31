@@ -15,6 +15,10 @@ class HittingStat < ActiveRecord::Base
   
   scope :with_players, -> { includes(:player) }
   
+  scope :for_league, -> (league) do
+    joins(:team).where(teams: {league: league})
+  end
+  
   def hits
     singles + doubles + triples + home_runs
   end
