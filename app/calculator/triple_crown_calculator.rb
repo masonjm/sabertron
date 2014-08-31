@@ -38,31 +38,43 @@ class TripleCrownCalculator
   end
   
   def winners
-    # TODO: Handle ties. This algorithm is non-deterministic if a player is tied for first in one or more of the stats.
     al_winner, nl_winner = ["AL", "NL"].collect do |league|
-      candidate = highest_batting_average(league)
-      if candidate == most_home_runs(league) && candidate == most_rbi(league)
-        candidate
-      end
+      find_winner(league)
     end
     TripleCrownResult.new(al_winner: al_winner, nl_winner: nl_winner, year: year)
   end
   
   def highest_batting_average(league)
-    stats(league).sort_by(&:batting_average).last.try(:player)
+    hitting_stats = stats(league).sort_by(&:batting_average)
+    max = hitting_stats.last.try(:batting_average)
+    hitting_stats.select do |stat|
+      stat.batting_average == max
+    end.map(&:player)
   end
   
   def most_home_runs(league)
-    stats(league).order("home_runs desc").first.try(:player)
+    max = stats(league).pluck("max(home_runs)")
+    stats(league).where(home_runs: max).map(&:player)
   end
   
   def most_rbi(league)
-    stats(league).order("rbi desc").first.try(:player)
+    max = stats(league).pluck("max(rbi)")
+    stats(league).where(rbi: max).map(&:player)
   end
   
   private
   
   def stats(league)
-    HittingStat.for_years(year).for_league(league)
+    HittingStat.for_years(year).for_league(league).with_players
+  end
+  
+  def find_winner(league)
+    hitters = highest_batting_average(league)
+    homers = most_home_runs(league)
+    assisters = most_rbi(league)
+    hitters.each do |hitter|
+      return hitter if hitter.in?(homers) && hitter.in?(assisters)
+    end
+    nil
   end
 end
