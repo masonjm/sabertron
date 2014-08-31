@@ -30,10 +30,26 @@ RSpec.describe HittingStat, :type => :model do
     end
     
     context "with 0 at_bats" do
-      subject { build(:hitting_stat, singles: 1, doubles: 1, triples: 1, home_runs: 1, at_bats: 0) }
+      subject { build(:hitting_stat, at_bats: 0) }
       
       it "equals 0" do
         expect(subject.batting_average).to eq 0
+      end
+    end
+  end
+  
+  describe "slugging percentage" do
+    subject { build(:hitting_stat, singles: 1, at_bats: 1) }
+    
+    it "equals (1B+(2*2B)+(3*3B)+(4*HR)) / at_bats" do
+      expect(subject.slugging_percentage).to eq 1.0
+    end
+    
+    context "with 0 at_bats" do
+      subject { build(:hitting_stat, at_bats: 0) }
+      
+      it "equals 0" do
+        expect(subject.slugging_percentage).to eq 0
       end
     end
   end
