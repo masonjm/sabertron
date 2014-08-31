@@ -31,10 +31,11 @@ class TripleCrownCalculator
     end
   end
   
-  attr_reader :year
+  attr_reader :year, :minimum_at_bats
   
-  def initialize(year)
+  def initialize(year, minimum_at_bats: 200)
     @year = year
+    @minimum_at_bats = minimum_at_bats
   end
   
   def winners
@@ -45,8 +46,8 @@ class TripleCrownCalculator
   end
   
   def highest_batting_average(league)
-    hitting_stats = stats(league).sort_by(&:batting_average)
-    max = hitting_stats.last.try(:batting_average)
+    hitting_stats = stats(league).where(["at_bats >= ?", minimum_at_bats]).sort_by(&:batting_average)
+    max = hitting_stats.last.batting_average
     hitting_stats.select do |stat|
       stat.batting_average == max
     end.map(&:player)

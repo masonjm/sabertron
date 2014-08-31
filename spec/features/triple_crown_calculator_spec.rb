@@ -5,11 +5,16 @@ describe "TripleCrownCalculator", :type => :feature do
   
   describe "highest_batting_average" do
     let!(:team) { create(:team) }
-    let!(:stat1) { create(:hitting_stat, year: 2011, team: team, singles: 1, at_bats: 1) }
-    let!(:stat2) { create(:hitting_stat, year: 2011, team: team, singles: 1, at_bats: 2) }
+    let!(:stat1) { create(:hitting_stat, year: 2011, team: team, singles: 1, at_bats: 200) }
+    let!(:stat2) { create(:hitting_stat, year: 2011, team: team, singles: 1, at_bats: 400) }
     
     it "returns player with highest batting average" do
       expect(subject.highest_batting_average(team.league)).to eq [stat1.player]
+    end
+    
+    it "ignores players with too few at_bats" do
+      calculator = TripleCrownCalculator.new(2011, minimum_at_bats: 300)
+      expect(calculator.highest_batting_average(team.league)).to eq [stat2.player]
     end
   end
   
