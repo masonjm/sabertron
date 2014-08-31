@@ -46,7 +46,7 @@ hitting_stats_files.each do |csv_file|
     player = Player.where(code: player_code).first
     if team && player
       imported_hitting_stats += 1
-      hitting_stats << [player.id, team.id, year, games, at_bats, runs, singles, doubles, triples, home_runs, rbi, stolen_bases, caught_stealing]
+      hitting_stats << [player.id, team.id, year, games || 0, at_bats || 0, runs || 0, singles || 0, doubles || 0, triples || 0, home_runs || 0, rbi || 0, stolen_bases || 0, caught_stealing || 0]
     else
       Rails.logger.info "Skipping #{row} from #{csv_file}. Missing player or team."
     end    

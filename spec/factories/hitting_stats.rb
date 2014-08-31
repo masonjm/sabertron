@@ -6,14 +6,14 @@ FactoryGirl.define do
     association :team
     year 2014
     games 1
-    at_bats 1
-    runs 1
-    singles 1
-    doubles 1
-    triples 1
-    home_runs 1
-    rbi 1
-    stolen_bases 1
-    caught_stealing 1
+    at_bats 0
+    runs 0
+    singles 0
+    doubles 0
+    triples 0
+    home_runs 0
+    rbi 0
+    stolen_bases 0
+    caught_stealing 0
   end
 end

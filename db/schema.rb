@@ -18,15 +18,15 @@ ActiveRecord::Schema.define(version: 20140825144551) do
     t.integer  "team_id",                     null: false
     t.integer  "year",                        null: false
     t.integer  "games",                       null: false
-    t.integer  "at_bats",         default: 0
-    t.integer  "runs",            default: 0
-    t.integer  "singles",         default: 0
-    t.integer  "doubles",         default: 0
-    t.integer  "triples",         default: 0
-    t.integer  "home_runs",       default: 0
-    t.integer  "rbi",             default: 0
-    t.integer  "stolen_bases",    default: 0
-    t.integer  "caught_stealing", default: 0
+    t.integer  "at_bats",         default: 0, null: false
+    t.integer  "runs",            default: 0, null: false
+    t.integer  "singles",         default: 0, null: false
+    t.integer  "doubles",         default: 0, null: false
+    t.integer  "triples",         default: 0, null: false
+    t.integer  "home_runs",       default: 0, null: false
+    t.integer  "rbi",             default: 0, null: false
+    t.integer  "stolen_bases",    default: 0, null: false
+    t.integer  "caught_stealing", default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

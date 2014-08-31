@@ -6,6 +6,17 @@ class BattingAverageChange
       @player = player
       @change = change
     end
+    
+    def to_s
+      "#{player} " +
+        if change > 0
+          "improved by #{change}"
+        elsif change < 0
+          "declined by #{change}"
+        else
+          "did not change"
+        end
+    end
   end
   
   attr_reader :from_year, :to_year, :minimum_at_bats
@@ -22,8 +33,6 @@ class BattingAverageChange
     players_with_batting_averages.each_slice(2) do |stats|
       from = stats.first
       to = stats.last
-      puts to.batting_average
-      puts from.batting_average
       player_change = to.batting_average - from.batting_average
       if player_change > most_changed
         player = from.player
@@ -36,6 +45,6 @@ class BattingAverageChange
   private
   
   def players_with_batting_averages
-    HittingStat.with_batting_average.for_years(from_year, to_year).where(["at_bats >= ?", minimum_at_bats]).order("player_id, year")
+    HittingStat.for_years(from_year, to_year).where(["at_bats >= ?", minimum_at_bats]).order("player_id, year")
   end
 end
