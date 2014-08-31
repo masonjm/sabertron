@@ -42,8 +42,8 @@ describe "TripleCrownCalculator", :type => :feature do
     
     context "with no winner" do
       let!(:team) { create(:team, league: "AL") }
-      let!(:stat1) { create(:hitting_stat, year: 2011, team: team, home_runs: 1, at_bats: 1) }
-      let!(:stat2) { create(:hitting_stat, year: 2011, team: team, rbi: 2) }
+      let!(:stat1) { create(:hitting_stat, year: 2011, team: team, home_runs: 1, at_bats: 200) }
+      let!(:stat2) { create(:hitting_stat, year: 2011, team: team, rbi: 2, at_bats: 200) }
       
       it "returns '(No result)'" do
         expect(subject.winners.al_winner).to eq "(No winner)"
@@ -52,8 +52,8 @@ describe "TripleCrownCalculator", :type => :feature do
     
     context "with a winner" do
       let!(:team) { create(:team, league: "AL") }
-      let!(:stat1) { create(:hitting_stat, year: 2011, team: team, home_runs: 1, rbi: 2, at_bats: 1) }
-      let!(:stat2) { create(:hitting_stat, year: 2011, team: team) }
+      let!(:stat1) { create(:hitting_stat, year: 2011, team: team, home_runs: 1, rbi: 2, at_bats: 200) }
+      let!(:stat2) { create(:hitting_stat, year: 2011, team: team, at_bats: 200) }
       
       it "returns the winner" do
         expect(subject.winners.al_winner).to eq stat1.player
@@ -62,8 +62,8 @@ describe "TripleCrownCalculator", :type => :feature do
     
     context "with tied home_runs" do
       let!(:team) { create(:team, league: "AL") }
-      let!(:stat1) { create(:hitting_stat, year: 2011, team: team, home_runs: 1, rbi: 2, at_bats: 1) }
-      let!(:stat2) { create(:hitting_stat, year: 2011, team: team, home_runs: 1) }
+      let!(:stat1) { create(:hitting_stat, year: 2011, team: team, home_runs: 1, rbi: 2, at_bats: 200) }
+      let!(:stat2) { create(:hitting_stat, year: 2011, team: team, home_runs: 1, at_bats: 200) }
       
       it "returns the winner" do
         expect(subject.winners.al_winner).to eq stat1.player

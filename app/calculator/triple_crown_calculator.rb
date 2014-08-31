@@ -47,10 +47,14 @@ class TripleCrownCalculator
   
   def highest_batting_average(league)
     hitting_stats = stats(league).where(["at_bats >= ?", minimum_at_bats]).sort_by(&:batting_average)
-    max = hitting_stats.last.batting_average
-    hitting_stats.select do |stat|
-      stat.batting_average == max
-    end.map(&:player)
+    if hitting_stats.present?
+      max = hitting_stats.last.batting_average
+      hitting_stats.select do |stat|
+        stat.batting_average == max
+      end.map(&:player)
+    else
+      []
+    end
   end
   
   def most_home_runs(league)
