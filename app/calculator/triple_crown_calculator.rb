@@ -17,17 +17,17 @@ class TripleCrownCalculator
     end
     
     def al_winner
-      @al_winner || no_result
+      @al_winner || no_winner
     end
     
     def nl_winner
-      @nl_winner || no_result
+      @nl_winner || no_winner
     end
     
     private
     
-    def no_result
-      "(No result)"
+    def no_winner
+      "(No winner)"
     end
   end
   

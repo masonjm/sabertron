@@ -41,7 +41,7 @@ describe "TripleCrownCalculator", :type => :feature do
       let!(:stat2) { create(:hitting_stat, year: 2011, team: team, rbi: 2) }
       
       it "returns '(No result)'" do
-        expect(subject.winners.al_winner).to eq "(No result)"
+        expect(subject.winners.al_winner).to eq "(No winner)"
       end
     end
     
