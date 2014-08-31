@@ -6,17 +6,17 @@ describe "BattingAverageChange", :type => :feature do
   describe "most_improved" do
     it "works for a single player" do
       player = create(:player)
-      create(:hitting_stat, player: player, year: 2009, at_bats: 200, singles: 100)
-      create(:hitting_stat, player: player, year: 2010, at_bats: 200, singles: 200)
+      from_stat = create(:hitting_stat, player: player, year: 2009, at_bats: 200, singles: 100)
+      to_stat = create(:hitting_stat, player: player, year: 2010, at_bats: 200, singles: 200)
       result = subject.most_improved
       
-      expect(result.player).to eq player
-      expect(result.change).to eq 0.5
+      expect(result.from_stat).to eq from_stat
+      expect(result.to_stat).to eq to_stat
     end
     
     it "works for multiple players" do
       player1 = create(:player)
-      create(:hitting_stat, player: player1, year: 2009, at_bats: 200, singles: 100)
+      from_stat = create(:hitting_stat, player: player1, year: 2009, at_bats: 200, singles: 100)
       create(:hitting_stat, player: player1, year: 2010, at_bats: 200, singles: 200)
       
       player2 = create(:player)
@@ -25,8 +25,7 @@ describe "BattingAverageChange", :type => :feature do
       
       result = subject.most_improved
       
-      expect(result.player).to eq player1
-      expect(result.change).to eq 0.5
+      expect(result.from_stat).to eq from_stat
     end
     
     it "ignores players with less than 200 at_bats" do
@@ -35,7 +34,7 @@ describe "BattingAverageChange", :type => :feature do
       create(:hitting_stat, player: player, year: 2010, at_bats: 199, singles: 200)
       result = subject.most_improved
       
-      expect(result.player).to eq nil
+      expect(result.from_stat).to eq nil
     end
   end
 end
