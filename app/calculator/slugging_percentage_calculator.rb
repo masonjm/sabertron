@@ -1,4 +1,4 @@
-class SluggingPercentage
+class SluggingPercentageCalculator
   class TeamResult
     include ActionView::Helpers::NumberHelper
     

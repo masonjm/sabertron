@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe "BattingAverageChange", :type => :feature do
-  subject { BattingAverageChange.new(2009, 2010) }
+describe "BattingAverageChangeCalculator", :type => :feature do
+  subject { BattingAverageChangeCalculator.new(2009, 2010) }
   
   describe "most_improved" do
     it "works for a single player" do

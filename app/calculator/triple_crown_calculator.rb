@@ -1,4 +1,4 @@
-class TripleCrown
+class TripleCrownCalculator
   class TripleCrownResult    
     attr_reader :year
     

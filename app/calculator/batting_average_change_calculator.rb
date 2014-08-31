@@ -1,4 +1,4 @@
-class BattingAverageChange
+class BattingAverageChangeCalculator
   class MostImprovedResult
     attr_reader :from_stat, :to_stat
     

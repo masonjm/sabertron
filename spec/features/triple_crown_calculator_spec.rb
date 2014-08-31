@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe "TripleCrown", :type => :feature do
-  subject { TripleCrown.new(2011) }
+describe "TripleCrownCalculator", :type => :feature do
+  subject { TripleCrownCalculator.new(2011) }
   
   describe "highest_batting_average" do
     let!(:team) { create(:team) }

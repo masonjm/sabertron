@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe "SluggingPercentage", :type => :feature do
-  subject { SluggingPercentage.new(2007) }
+describe "SluggingPercentageCalculator", :type => :feature do
+  subject { SluggingPercentageCalculator.new(2007) }
   
   describe "for_team" do
     let(:team) { create(:team, code: "TEST") }
